@@ -5,4 +5,4 @@ Project "Data Building"
 
 
 من الان سر اینپوت گیری مشکل دارم
-pd.dataframe(d)
+# pd.dataframe(d)
