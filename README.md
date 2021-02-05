@@ -3,7 +3,9 @@ Project "Data Building"
 
 
 In the name of God
+
 The file you are currently viewing is related to the finances of a hypothetical building in which all the occupants of the house have no tenants.
+
 In the append function, after running, the user starts the input process by writing this word, and can continue the input process until he answers the last input question in the affirmative.
 
 
