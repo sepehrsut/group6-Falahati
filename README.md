@@ -2,12 +2,15 @@
 Project "Data Building"
 
 
-dar ghesmat aval agar tabe "append" ra seda bezanim farayande input giri aghaz mishavad:
-def append():
-    """ This function accepts inputs from the user. """
+dar ghesmat aval agar tabe "append" ra seda bezanim farayande input giri aghaz mishavad
+
+
+
+    def append():
+        """ This function accepts inputs from the user. """
     
-    import pandas as pd
-    import datetime as dt
+        import pandas as pd
+        import datetime as dt
     
     d = {'amount': [], 'time':[], 'category': [] , 'subcategory': [],
      'responsible unit': [], 'related unit': [[]],
