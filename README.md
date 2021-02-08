@@ -1,5 +1,10 @@
-# group6-اسقف Project
+# group6 - اسقف Project
 
+## Group Member
+  1. [MohammadHosein Falahati](#mohammadHosein-falahati) : Header/coder
+  2. [Sepehr Harirchian](#sepehr-harirchian) : coder
+  3. [Amirhosein GhaziMoradi](#amirhosein-ghazimoradi) : coder 
+  4. [Ahmadreza HajiHoseini](#ahmadreza-hajihoseini) : coder
 ## Table of Contents
   1. [Introduction](#introduction)
   2. [Append Function](#append-function)
@@ -10,6 +15,7 @@
      4. [P: Parking](#parking)
      5. [D: Default](#default)
   4. [Report Faunction](#report-function)
+  5. [Conculusion](#conculusion)
   
 ## Introduction
 In order to adjust the building expenses, each building manager must calculate all the minor expenses and figure out how to divide each of them, and also report to the occupants at the end. All of this is time consuming for one person and organizing the whole paper and work invoice is very difficult to handle. Therefore, in the age of technology, various programs and softwares have been written to facilitate the work and organize these costs, one of which is our project (اسقف team), which helps the building manager to eliminate all additional building costs.Our program consists of three parts: 1.Input(append func) 2.div(division func) 3.report func
@@ -78,7 +84,7 @@ Also, in the subcategory section, which was only related to the building bills s
         d['related unit'][0].append(eval(e))
         
 In the div section, which is the most important part of our input function, the building manager, after entering the relevant option, causes the division functions to calculate the costs of each unit.
-    
+
     div = input('div: 1) -e 2) -r 3) -d 4) -a 5) -p [1/2/3/4/5] :(Note that if you have selected charge as a category, -d must be chosen as the division type.)')
     if div == '1':
         div = 'equal'
@@ -109,3 +115,28 @@ At the end of the input, after receiving this information from the building mana
         pd.DataFrame(d).to_csv(root_out, mode = 'a', header = False, index = False)
         append()
 **[⬆ back to top](#table-of-contents)**
+
+## **Conculusion**
+### Tasks of group members in the project and its challenges
+
+Member performance report:
+input functions were written by Mohammad Hossein Falahati with the help of Sepehr Harirchian.
+The report function was written by Ahmad Reza Ali Hosseini and Amir Hossein Ghazi Moradi.
+Computational functions and how to divide costs were written by Ahmad Reza Ali Hosseini and Amir Hossein Ghazi Moradi and finally debugged and highly optimized by Sepehr Harirchian.
+The report writing and presentation of the project in Git hub was done by Mohammad Hossein Falahati and Amir Hossein Ghazi Moradi with translation correction by Sepehr Harirchian.
+
+The work process and challenges in the project:
+At first the group focused on accepting inputs from user and came to the conclusion that the program must accept inputs using while and if loops.
+One challenge was in the expense’s division functions. We didn’t have an idea how to divide the expenses between related units, and another problem was that we didn’t know how to put the distributed costs in a new database, which was solved by asking the project guide and searching.
+Although the report functions had a lot of syntax, we were able to successfully overcome this challenge due to previous familiarity.
+One of our biggest challenges was that at first our functions were performed on all units, but later we realized that some costs may not apply to some units. Unfortunately, we did not find a solution to solve this problem, so the group decided to enter the desired units manually, which of course is mentioned in the points where there is room for improvement.
+Some challenges were minor were solved by searching the internet and collaborating with members.
+
+Creative ideas and extra works:
+One issue that may be considered exceptional is making it easy for the user to use the program by entering the least number of characters. For example, we can refer to the division functions instead of entering information each time the function is executed. The user only chooses the type of function so that the program, executes the function and hence divides the costs according to the user input database. Also, as extra work, a function was written that demonstrates the share of each unit in total costs by plotting.
+
+strong points of the code and points where the program can be improved:
+One of the advantages of our say program is that variables are named in such way so that even those with a medium to low level of English literacy can understand the code. Various documentations including function definitions and multiple hashtags make the code more comprehendible.
+A Point in the program that can be improved is adding an all option when accepting data in related units instead of writing individual units.
+
+  **[⬆ back to top](#table-of-contents)**
