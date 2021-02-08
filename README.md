@@ -117,25 +117,24 @@ At the end of the input, after receiving this information from the building mana
 **[⬆ back to top](#table-of-contents)**
 
 ## **Conculusion**
-### Tasks of group members in the project and its challenges
 
-Member performance report:
-input functions were written by ## **[MohammadHossein Falahati](#group-member)** with the help of ## **[Sepehr Harirchian](#group-member)**.
-The report function was written by ## **[AhmadReza AliHosseini](#group-member)** and ## **[AmirHossein GhaziMoradi](#group-member)**.
-Computational functions and how to divide costs were written by Ahmad Reza Ali Hosseini and Amir Hossein Ghazi Moradi and finally debugged and highly optimized by Sepehr Harirchian.
-The report writing and presentation of the project in Git hub was done by Mohammad Hossein Falahati and Amir Hossein Ghazi Moradi with translation correction by Sepehr Harirchian.
+### Member performance report:
+input functions were written by **[MohammadHossein Falahati](#group-member)** with the help of **[Sepehr Harirchian](#group-member)**.
+The report function was written by **[AhmadReza AliHosseini](#group-member)** and **[AmirHossein GhaziMoradi](#group-member)**.
+Computational functions and how to divide costs were written by **[AhmadReza AliHosseini](#group-member)** and **[AmirHossein GhaziMoradi](#group-member)** and finally debugged and highly optimized by **[Sepehr Harirchian](#group-member)**.
+The report writing and presentation of the project in Git hub was done by **[MohammadHossein Falahati](#group-member)** and **[AmirHossein GhaziMoradi](#group-member)** with translation correction by **[Sepehr Harirchian](#group-member)**.
 
-The work process and challenges in the project:
+### The work process and challenges in the project:
 At first the group focused on accepting inputs from user and came to the conclusion that the program must accept inputs using while and if loops.
 One challenge was in the expense’s division functions. We didn’t have an idea how to divide the expenses between related units, and another problem was that we didn’t know how to put the distributed costs in a new database, which was solved by asking the project guide and searching.
 Although the report functions had a lot of syntax, we were able to successfully overcome this challenge due to previous familiarity.
 One of our biggest challenges was that at first our functions were performed on all units, but later we realized that some costs may not apply to some units. Unfortunately, we did not find a solution to solve this problem, so the group decided to enter the desired units manually, which of course is mentioned in the points where there is room for improvement.
 Some challenges were minor were solved by searching the internet and collaborating with members.
 
-Creative ideas and extra works:
+### Creative ideas and extra works:
 One issue that may be considered exceptional is making it easy for the user to use the program by entering the least number of characters. For example, we can refer to the division functions instead of entering information each time the function is executed. The user only chooses the type of function so that the program, executes the function and hence divides the costs according to the user input database. Also, as extra work, a function was written that demonstrates the share of each unit in total costs by plotting.
 
-strong points of the code and points where the program can be improved:
+### strong points of the code and points where the program can be improved:
 One of the advantages of our say program is that variables are named in such way so that even those with a medium to low level of English literacy can understand the code. Various documentations including function definitions and multiple hashtags make the code more comprehendible.
 A Point in the program that can be improved is adding an all option when accepting data in related units instead of writing individual units.
 
