@@ -14,8 +14,19 @@
      5. [D: Dependency Inversion Principle (DIP)](#dependency-inversion-principle-dip)
   6. [Don’t repeat yourself (DRY)](#dont-repeat-yourself-dry)
   
-  **[⬆ back to top](#table-of-contents)**
-In the name of God
+  
+##Introduction
+In order to adjust the building expenses, each building manager must calculate all the small expenses and how to divide each of them, and also report to the building occupants at the end of the bill, charge, financial balance, etc. All of this is time consuming for one person and organizing the whole paper and work invoice and it is very difficult to handle. Therefore, in the age of technology, various programs and software have been written to facilitate the work and organize these costs, one of which is our project (Bishop team), which helps the building manager to eliminate all additional building costs. And give only general expenses to the program
+
+**[⬆ back to top](#table-of-contents)**
+
+
+
+
+
+
+
+
 
 The file you are currently viewing is related to the finances of a hypothetical building in which all the occupants of the house have no tenants.
 
