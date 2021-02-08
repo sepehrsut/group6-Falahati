@@ -14,7 +14,7 @@
      3. [A: Area](#area)
      4. [P: Parking](#parking)
      5. [D: Default](#default)
-  4. [Report Faunction](#report-function)
+  4. [Report Function](#report-function)
   5. [Conculusion](#conculusion)
   
 ## Introduction
@@ -264,7 +264,7 @@ At the end of the input, after receiving this information from the building mana
 
  **[⬆ back to top](#table-of-contents)**
  
-## **Report Faunction**
+## **Report Function**
  
  
  **[⬆ back to top](#table-of-contents)**
