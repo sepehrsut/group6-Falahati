@@ -1,7 +1,7 @@
 # group6 - اسقف Project
 
 ## Group Member
-  1. [MohammadHosein Falahati](#mohammadHosein-falahati) : Header/coder
+  1. [MohammadHosein Falahati](#mohammadHosein-falahati) : Head Of The Group/coder
   2. [Sepehr Harirchian](#sepehr-harirchian) : coder
   3. [Amirhosein GhaziMoradi](#amirhosein-ghazimoradi) : coder 
   4. [AhmadReza AliHoseini](#ahmadreza-alihoseini) : coder
@@ -9,11 +9,11 @@
   1. [Introduction](#introduction)
   2. [Append Function](#append-function)
   3. [Division Function](#division-function)
-     1. [E: Equal](#equal)
-     2. [R: Number](#number)
-     3. [A: Area](#area)
-     4. [P: Parking](#parking)
-     5. [D: Default](#default)
+     1. [e: equal](#e:-equal)
+     2. [r: number](#r:-number)
+     3. [a: area](#a:-area)
+     4. [P: parking](#p:-parking)
+     5. [d: default](#d:-default)
   4. [Report Function](#report-function)
   5. [Conculusion](#conculusion)
   
@@ -119,7 +119,7 @@ At the end of the input, after receiving this information from the building mana
 ## **Division Function**
 
 
-### *E: Equal*
+### *e: equal*
 
     def equal(root_in: str, root_out: str):
    
@@ -145,7 +145,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
       
-### *R: Number*
+### *r: number*
 
     def number(root_in: str, root_out: str):
     
@@ -175,7 +175,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
       
-### *A: Area*
+### *a: area*
 
     def area(root_in: str, root_out: str):
     
@@ -205,7 +205,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
 
-### *P: Parking*
+### *p: parking*
 
     def parking(root_in: str, root_out: str):
     
@@ -235,7 +235,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
 
-### *D: Default*
+### *d: default*
 
     def default(root_in: str, root_out: str):
     
@@ -265,7 +265,284 @@ At the end of the input, after receiving this information from the building mana
  **[⬆ back to top](#table-of-contents)**
  
 ## **Report Function**
+
+### *balance*
+
+    def balance():
+    
+      """ This function calculates the balance for each unit within a specific time period. """
+    
+      import pandas as pd
+    
+      user_input_df = pd.read_excel('data3.xlsx')
+    
+    # the user enters the specified units and the time period
+      selected_units = input('Please enter your selected units separated by commas. You can type all if you want to include all units:').split(',')
+      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made:').split(',')
+    
+    # changing the class of selected units from str to int
+      for i in range(len(selected_units)):
+          selected_units[i] = eval(selected_units[i])
+          
+      if selected_units == 'all':
+        
+          final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1])].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+          return final_balance
+   
+      else:
+        
+          final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1]) &   (user_input_df['unit'].isin(selected_units))][['unit', 'cost for each unit']].groupby('unit').aggregate({'cost for each unit':  'sum'}).reset_index()
+          return final_balance
  
+ ### *transaction_histoy*
+ 
+    def transaction_histoy():
+    
+      """ This function returns transactions within a specific time period in the form of csv. """
+    
+      import pandas as pd
+    
+      transactions = pd.read_excel('data3.xlsx')
+    
+    # the user enters a time period
+      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made:').split(',')
+    
+    # filtering based on time period
+      final_df = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1])]
+    
+      final_df.to_csv(r'C:\Users\ASUS\Desktop\مبانی برنامه سازی\پروژه\balance.csv', mode= 'w')
+    
+      return 'A csv file with the name of balance has been created. Please check it.'
+ 
+ ### *portion by category*
+ 
+    def portion_by_category():
+    
+      """ This function reports the amount portion that each category has from the total expenses. """
+    
+      import pandas as pd
+      import matplotlib.pyplot as plt
+
+      user_input_df = pd.read_excel('data2.xlsx') 
+    
+      portion = user_input_df.groupby('category').aggregate({'amount': 'sum'}).reset_index()
+    
+    # the % portion column demonstrates that what fraction of total expenses belongs to each category
+      portion['% portion'] = (portion['amount'] / portion['amount'].sum()) * 100
+    
+    # plotting for better understanding
+      plt.pie(portion['amount'], labels = portion['category'], shadow = False, autopct ='%1.f%%')
+      plt.title('portion by subcategory')
+      plt.show()
+
+      return portion,'A plot has been drawn in the plots pane.Please check it'
+ 
+ ### *portion by subcategory*
+ 
+    def portion_by_subcategory():
+    
+      """ This function reports the amount portion that each subcategory has from the total expenses costed by bills. """
+    
+      import pandas as pd
+      import matplotlib.pyplot as plt
+
+      user_input_df = pd.read_excel('data2.xlsx')
+    
+      user_input_df = user_input_df[user_input_df['category'] == 'bill']
+      portion = user_input_df.groupby('subcategory').aggregate({'amount': 'sum'}).reset_index()
+      portion['% portion'] = (portion['amount'] / portion['amount'].sum()) * 100
+
+    # plotting for better understanding
+      plt.pie(portion['amount'], labels = portion['subcategory'], shadow = True, autopct = '%1.f%%')
+      plt.title('portion by subcategory')
+      plt.show()
+    
+      return portion,'A plot has been drawn in the plots pane.Please check it'
+ 
+ ### *portion by unit*
+ 
+    def portion_by_unit():
+    
+      """ This function reports the amount portion that each unit has from the total expenses. """
+    
+      import pandas as pd
+      import matplotlib.pyplot as plt
+    
+      transactions = pd.read_excel('data3.xlsx')
+    
+      portion = transactions.groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+      portion['% portion'] = (portion['cost for each unit'] / portion['cost for each unit'].sum())
+    
+    # plotting for better understanding
+      plt.pie(portion['cost for each unit'], labels = portion['unit'], shadow = True, autopct = '%1.f%%')
+      plt.title('portion by unit')
+      plt.show()
+    
+      return portion,'A plot has been drawn in the plots pane. Please chack it.'
+ 
+ ### *cumulative sum for units*
+ 
+    def cumulative_sum_for_units():
+    
+      """ This function returns a cumulative sum for the expenses of each unit based on specified units within a specific time period. """
+    
+      import pandas as pd
+      import matplotlib.pyplot as plt
+    
+      transactions = pd.read_excel('data3.xlsx')
+    
+    # the user enters the specified units and subcategories and time period
+      selected_subcategories = input('Please enter your specified subcategories separated by commas. You can type all if you want to include all subcategories: ')
+      selected_units = input('Please enter your specified units separated by commas and all lower case. You can type all if you want to include all units: ')
+      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made: ').split(',')
+    
+      if (selected_subcategories == 'all') and (selected_units == 'all'):
+        
+        # filtering by time period
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1])].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          units = transactions['unit']
+          del transactions['unit']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(units, cumulative_sum['cost for each unit'])
+          plt.xlabel('unit')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for units')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
+    
+      elif (selected_subcategories == 'all') and (selected_units != 'all'):
+        
+          selected_units = selected_units.split(',')
+        
+        # changing the class of selected units from str to int
+          for i in range(len(selected_units)):
+              selected_units[i] = int(selected_units[i])
+        
+        # filtering by selected units and time period
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1]) & (transactions['unit'].isin(selected_units))].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          units = transactions['unit']
+          del transactions['unit']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(units, cumulative_sum['cost for each unit'])
+          plt.xlabel('unit')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for units')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
+    
+      elif (selected_subcategories != 'all') and (selected_units == 'all'):
+                
+          selected_subcategories = selected_subcategories.split(',')
+        
+        # if specific subcategories are included then the category column must be a bill
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1]) & (transactions['category'] == 'bill') & (transactions['subcategory'].isin(selected_subcategories))].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          units = transactions['unit']
+          del transactions['unit']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(units, cumulative_sum['cost for each unit'])
+          plt.xlabel('unit')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for units')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
+    
+      elif (selected_subcategories != 'all') and (selected_units != 'all'):
+        
+          selected_units = selected_units.split(',')
+          selected_subcategories = selected_subcategories.split(',')
+        
+        # changing the class of selected units from str to int
+          for i in range(len(selected_units)):
+              selected_units[i] = int(selected_units[i])
+            
+        # filtering by specified units and subcategories and time period          
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1]) & (transactions['unit'].isin(selected_units)) & (transactions['category'] == 'bill') & (transactions['subcategory'].isin(selected_subcategories))].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          units = transactions['unit']
+          del transactions['unit']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(units, cumulative_sum['cost for each unit'])
+          plt.xlabel('unit')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for units')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
+ 
+ ### *cumulative sum for subcategory*
+    def cumulative_sum_for_subcategories():
+    
+      """ This function returns a cumulative sum for the expenses of each subcategory within a specific time period."""
+    
+      import pandas as pd
+      import matplotlib.pyplot as plt
+
+      transactions = pd.read_excel('data3.xlsx')
+    
+    # if specific subcategories are included then the category column must be a bill
+      transactions = transactions[transactions['category'] == 'bill']
+    
+    # the user enters the specified subcategories and time period
+      selected_subcategories = input('Please enter your specified subcategories separated by commas. You can type all if you want to include all subcategories: ')
+      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made: ').split(',')
+    
+      if selected_subcategories == 'all':
+        
+        # filtering by time period
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1])].groupby('subcategory').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          subcategories = transactions['subcategory']
+          del transactions['subcategory']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(subcategories, cumulative_sum['cost for each unit'])
+          plt.xlabel('subcategory')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for subcategories')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
+    
+      else:
+        
+          selected_subcategories = selected_subcategories.split(',')
+        
+        # filtering by specified subcategories and time period
+          transactions = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1]) & (transactions['subcategories'].isin(selected_subcategories))].groupby('subcategory').aggregate({'cost for each unit': 'sum'}).reset_index()
+        
+          subcategories = transactions['subcategory']
+          del transactions['subcategory']
+        
+          cumulative_sum = transactions.cumsum()
+        
+        # plotting
+          plt.bar(subcategories, cumulative_sum['cost for each unit'])
+          plt.xlabel('subcategory')
+          plt.ylabel('cumulative sum')
+          plt.title('cumulative sum for subcategories')
+          plt.show()
+        
+          return 'A plot has been drawn in the plots pane. Please check it.'
  
  **[⬆ back to top](#table-of-contents)**
 
