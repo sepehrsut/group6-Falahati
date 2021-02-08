@@ -15,6 +15,13 @@
      4. [parking](#parking)
      5. [default](#default)
   4. [Report Function](#report-function)
+     1. [balance](#balance)
+     2. [transaction histoy](#transaction-histoy)
+     3. [portion by category](#portion-by-category)
+     4. [portion by subcategory](#portion-by-subcategory)
+     5. [portion by unit](#portion-by-unit)
+     6. [cumulative sum for units](#cumulative-sum-for-units)
+     7. [cumulative sum for subcategory](#cumulative-sum-for-subcategory)
   5. [Conculusion](#conculusion)
   
 ## Introduction
@@ -294,7 +301,7 @@ At the end of the input, after receiving this information from the building mana
           final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1]) &   (user_input_df['unit'].isin(selected_units))][['unit', 'cost for each unit']].groupby('unit').aggregate({'cost for each unit':  'sum'}).reset_index()
           return final_balance
  
- ### *transaction_histoy*
+ ### *transaction histoy*
  
     def transaction_histoy():
     
