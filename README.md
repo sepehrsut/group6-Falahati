@@ -119,20 +119,20 @@ At the end of the input, after receiving this information from the building mana
 ## **Division Function**
 
 
-### E: Equal
+## *E: Equal*
 
-### R: Number
+## *R: Number*
 
-### A: Area
+## *A: Area*
 
-### P: Parking
+## *P: Parking*
 
-### D: Default
+## *D: Default*
 
  **[⬆ back to top](#table-of-contents)**
  
  
- ## **Report Faunction**
+## **Report Faunction**
  
  
  **[⬆ back to top](#table-of-contents)**
