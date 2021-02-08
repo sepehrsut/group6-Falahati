@@ -9,11 +9,11 @@
   1. [Introduction](#introduction)
   2. [Append Function](#append-function)
   3. [Division Function](#division-function)
-     1. [e: equal](#e:-equal)
-     2. [r: number](#r:-number)
-     3. [a: area](#a:-area)
-     4. [P: parking](#p:-parking)
-     5. [d: default](#d:-default)
+     1. [equal](#equal)
+     2. [number](#number)
+     3. [area](#area)
+     4. [parking](#parking)
+     5. [default](#default)
   4. [Report Function](#report-function)
   5. [Conculusion](#conculusion)
   
@@ -119,7 +119,7 @@ At the end of the input, after receiving this information from the building mana
 ## **Division Function**
 
 
-### *e: equal*
+### *equal*
 
     def equal(root_in: str, root_out: str):
    
@@ -145,7 +145,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
       
-### *r: number*
+### *number*
 
     def number(root_in: str, root_out: str):
     
@@ -175,7 +175,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
       
-### *a: area*
+### *area*
 
     def area(root_in: str, root_out: str):
     
@@ -205,7 +205,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
 
-### *p: parking*
+### *parking*
 
     def parking(root_in: str, root_out: str):
     
@@ -235,7 +235,7 @@ At the end of the input, after receiving this information from the building mana
     
       return
 
-### *d: default*
+### *default*
 
     def default(root_in: str, root_out: str):
     
