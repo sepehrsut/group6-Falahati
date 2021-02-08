@@ -116,6 +116,28 @@ At the end of the input, after receiving this information from the building mana
         append()
 **[⬆ back to top](#table-of-contents)**
 
+## **Division Function**
+
+
+### E: Equal
+
+### R: Number
+
+### A: Area
+
+### P: Parking
+
+### D: Default
+
+ **[⬆ back to top](#table-of-contents)**
+ 
+ 
+ ## **Report Faunction**
+ 
+ 
+ **[⬆ back to top](#table-of-contents)**
+
+
 ## **Conculusion**
 
 ### Member performance report:
