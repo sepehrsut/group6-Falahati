@@ -120,8 +120,8 @@ At the end of the input, after receiving this information from the building mana
 ### Tasks of group members in the project and its challenges
 
 Member performance report:
-input functions were written by **[MohammadHossein Falahati](#group-member)** with the help of **[Sepehr Harirchian](#group-member)**.
-The report function was written by **[AhmadReza AliHosseini](#group-member)** and **[AmirHossein GhaziMoradi](#group-member)**.
+input functions were written by ## **[MohammadHossein Falahati](#group-member)** with the help of ## **[Sepehr Harirchian](#group-member)**.
+The report function was written by ## **[AhmadReza AliHosseini](#group-member)** and ## **[AmirHossein GhaziMoradi](#group-member)**.
 Computational functions and how to divide costs were written by Ahmad Reza Ali Hosseini and Amir Hossein Ghazi Moradi and finally debugged and highly optimized by Sepehr Harirchian.
 The report writing and presentation of the project in Git hub was done by Mohammad Hossein Falahati and Amir Hossein Ghazi Moradi with translation correction by Sepehr Harirchian.
 
