@@ -30,7 +30,7 @@
 In order to adjust the building expenses, each building manager must calculate all the minor expenses and figure out how to divide each of them, and also report to the occupants at the end. All of this is time consuming for one person and organizing the whole paper and work invoice is very difficult to handle. Therefore, in the age of technology, various programs and softwares have been written to facilitate the work and organize these costs, one of which is our project (اسقف team), which helps the building manager to eliminate all additional building costs.Our program consists of three parts: 1.Input(append func) 2.div(division func) 3.report func
 In the input section(append func), the building manager only needs to give the total costs of the building and in the other two sections, the costs of each unit in the ways specified by the manager, such as the aggregate cost chart, financial balance and invoices of the units,and etc. is demonstrated.
 
-[*summary*](https://github.com/FAHM7380/group6-Falahati/blob/main/summary.png?raw=true)
+![alt text](https://github.com/FAHM7380/group6-Falahati/blob/main/summary.png?raw=true)
 
 ## **Append Function**
 
