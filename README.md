@@ -626,6 +626,8 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
 **Observation sample-cumsum graph:**
 
 ![alt text](https://github.com/FAHM7380/group6-Falahati/blob/main/Final%20Project/Observation%20sample-cumsum%20graph.png?raw=true)
+
+Using data3 in Data exc folder, a cumulative sum graph for units' expenses is illustrated above.
     
           
 **[⬆ back to top](#table-of-contents)** 
@@ -716,7 +718,7 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
 
 ![alt text](https://github.com/FAHM7380/group6-Falahati/blob/main/Final%20Project/photo_2021-02-10_09-14-13.jpg?raw=true)
 
-Using data3 and data1 that put in Data exc, the estimated monthly payment next year for each unit is about 401 thousand tomans.
+Using data3 and data1 that in Data exc folder, next year's estimated monthly payment for each unit is about 401 thousand tomans.
  
  **[⬆ back to top](#table-of-contents)**
 
