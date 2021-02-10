@@ -73,7 +73,7 @@ def portion_by_category(root_in: str):
     
     # plotting for better understanding
     plt.pie(shares['amount'], labels = shares['category'], shadow = False, autopct ='%1.f%%')
-    plt.title('shares by subcategory')
+    plt.title('portion by subcategory')
     plt.show()
 
     return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -96,7 +96,7 @@ def portion_by_subcategory(root_in: str):
 
     # plotting for better understanding
     plt.pie(shares['amount'], labels = shares['subcategory'], shadow = True, autopct = '%1.f%%')
-    plt.title('shares by subcategory')
+    plt.title('portion by subcategory')
     plt.show()
     
     return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -117,7 +117,7 @@ def portion_by_unit(root_in: str):
     
     # plotting for better understanding
     plt.pie(shares['cost for each unit'], labels = shares['unit'], shadow = True, autopct = '%1.f%%')
-    plt.title('shares by unit')
+    plt.title('portion by unit')
     plt.show()
     
     return shares,'A plot has been drawn in the plots pane. Please chack it.'
