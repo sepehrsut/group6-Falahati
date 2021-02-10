@@ -6,6 +6,7 @@
 # for acquiring a percent share from total expenses that units have, please type portion_by_unit(root_in) in python console
 # for acquiring a cumulative sum based on units type cumulative_sum_for_units(root_in) and for acquiring a cumulative sum based on subcategories type cumulative_sum_for_subcategories(root_in) in console python
 # for observing a status of the buildings total balance please type negative_balance_error(root_in) in python console
+# for acquiring an estimation of next year's monthly expenses for each unit please type next_year_expenditure_estimation(root_in, root_info) in python console
 
 def append(root_out: str):
     
@@ -372,7 +373,7 @@ def portion_by_category(root_in: str):
     
     # plotting for better understanding
     plt.pie(shares['amount'], labels = shares['category'], shadow = False, autopct ='%1.f%%')
-    plt.title('shares by subcategory')
+    plt.title('portion by subcategory')
     plt.show()
 
     return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -395,7 +396,7 @@ def portion_by_subcategory(root_in: str):
 
     # plotting for better understanding
     plt.pie(shares['amount'], labels = shares['subcategory'], shadow = True, autopct = '%1.f%%')
-    plt.title('shares by subcategory')
+    plt.title('portion by subcategory')
     plt.show()
     
     return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -416,7 +417,7 @@ def portion_by_unit(root_in: str):
     
     # plotting for better understanding
     plt.pie(shares['cost for each unit'], labels = shares['unit'], shadow = True, autopct = '%1.f%%')
-    plt.title('shares by unit')
+    plt.title('portion by unit')
     plt.show()
     
     return shares,'A plot has been drawn in the plots pane. Please chack it.'
