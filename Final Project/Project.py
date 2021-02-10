@@ -16,14 +16,14 @@ def append(root_out: str):
     import pandas as pd
     import datetime as dt
     
-    d = {'amount': [], 'time':[], 'category': [] , 'subcategory': [],
+    d = {'amount': [], 'date':[], 'category': [] , 'subcategory': [],
      'responsible unit': [], 'related unit': [[]],
      'div': [], 'description': []}
     
     amount = int(input('amount:'))
     d['amount'].append(amount)
     
-    time = input('time( Example: 1399/09/21 ) : ')
+    time = input('date( Example: 1399/09/21 ) : ')
     d['time'].append(dt.date(int(time[0:4]),int(time[5:7]), int(time[8:])))
     
     category = input("category: 1) bill 2) cleaning 3) elevator 4) parking 5) repairs 6) charge 7) other [1/2/3/4/5/6/7] :")
