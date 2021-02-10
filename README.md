@@ -41,7 +41,7 @@ The append function is the part where the building manager must give the informa
     
       import pandas as pd
       import datetime as dt
-      d = {'amount': [], 'time':[], 'category': [] , 'subcategory': [],
+      d = {'amount': [], 'date':[], 'category': [] , 'subcategory': [],
      'responsible unit': [], 'related unit': [[]],
      'div': [], 'description': []}
      
@@ -50,7 +50,7 @@ These dictionary keys include the amount or the same cost, the time of the trans
     amount = int(input('amount:'))
     d['amount'].append(amount)
     
-    time = input('time( Example: 1399/09/21 ) : ')
+    time = input('date( Example: 1399/09/21 ) : ')
     d['time'].append(dt.date(int(time[0:4]),int(time[5:7]), int(time[8:])))
     
 In the category section and the rest of the input sections, we acted as a few options so that the building manager could easily do the building work and spend less time typing. 
@@ -437,7 +437,7 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
     
     # plotting for better understanding
       plt.pie(shares['amount'], labels = shares['category'], shadow = False, autopct ='%1.f%%')
-      plt.title('shares by subcategory')
+      plt.title('portion by subcategory')
       plt.show()
 
       return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -462,7 +462,7 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
 
     # plotting for better understanding
       plt.pie(shares['amount'], labels = shares['subcategory'], shadow = True, autopct = '%1.f%%')
-      plt.title('shares by subcategory')
+      plt.title('portion by subcategory')
       plt.show()
       
       return shares,'A plot has been drawn in the plots pane.Please check it'
@@ -485,7 +485,7 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
     
     # plotting for better understanding
       plt.pie(shares['cost for each unit'], labels = shares['unit'], shadow = True, autopct = '%1.f%%')
-      plt.title('shares by unit')
+      plt.title('portion by unit')
       plt.show()
     
       return shares,'A plot has been drawn in the plots pane. Please chack it.'
