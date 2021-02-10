@@ -20,8 +20,10 @@
      3. [portion by category](#portion-by-category)
      4. [portion by subcategory](#portion-by-subcategory)
      5. [portion by unit](#portion-by-unit)
-     6. [cumulative sum for units](#cumulative-sum-for-units)
-     7. [cumulative sum for subcategory](#cumulative-sum-for-subcategory)
+     6. [negative balance error](#negative-balance-error)
+     7. [cumulative sum for units](#cumulative-sum-for-units)
+     8. [cumulative sum for subcategory](#cumulative-sum-for-subcategory)
+     9. [next year expenditure estimation](#next-year-expenditure-estimation)
   5. [Conculusion](#conculusion)
   
 ## Introduction
@@ -163,8 +165,6 @@ Finally, the *default function* is used to calculate the building charge, which 
     
       return
       
-**[⬆ back to top](#table-of-contents)**
-      
 ### *number*
 
     def number(root_in: str, root_out: str, root_info: str):
@@ -215,8 +215,6 @@ Finally, the *default function* is used to calculate the building charge, which 
       user_input_df.to_csv(root_out, mode = 'a', header = False, index = False)   
       return 
       
- **[⬆ back to top](#table-of-contents)**
-      
 ### *area*
 
     def area(root_in: str, root_out: str, root_info: str):
@@ -266,8 +264,6 @@ Finally, the *default function* is used to calculate the building charge, which 
       user_input_df.to_csv(root_out, mode = 'a', header = False, index = False)   
     
       return
- 
-**[⬆ back to top](#table-of-contents)**
       
 ### *parking*
 
@@ -319,8 +315,6 @@ Finally, the *default function* is used to calculate the building charge, which 
     
       return
 
-**[⬆ back to top](#table-of-contents)**
-
 ### *default*
 
     def default(root_in: str, root_out: str, root_info: str):
@@ -356,19 +350,35 @@ Finally, the *default function* is used to calculate the building charge, which 
  
 ## **Report Function**
 
+Report functions return a wide range of building’s financial reports such as cumulative sum graphs, transaction histories etc. About ten functions make it possible for the building manager to get an overview of the residents’ payments and building expenses.
+
+The ***balance function*** provides each unit’s total payments in a desired time period.
+
+A history of transactions in a specified time is also delivered as a csv file to the user by the ***transaction_history_function***. 
+
+Functions starting with the word ***portion_by*** illustrate each unit, category or subcategory’s fraction of the total expenses.
+
+Whenever the building’s total balance is negative, the ***negative_balance_error function*** rises a warning otherwise it shows the excess amount of money. 
+
+The ***cumulative_sum functions*** (for unit or subcategory) provide a cumulative sum graph of the building’s costs with the capability of being filtered based on a range of parameters either grouped by units or subcategories. 
+
+The last but not least is the ***next_year_expenditure_estimation function*** which basically projects each unit’s next year monthly expenses (perhaps charge) with considering the inflation rate in the calculations.
+
 ### *balance*
 
-    def balance():
+    def balance(root_in: str):
     
-      """ This function calculates the balance for each unit within a specific time period. """
+      """ This function calculates the balance for each unit within a specific
+          time period. The root_in variable is the path and the name of the excel file
+          containing transactions. """
     
       import pandas as pd
     
-      user_input_df = pd.read_excel('data3.xlsx')
+      user_input_df = pd.read_excel(root_in)
     
     # the user enters the specified units and the time period
       selected_units = input('Please enter your selected units separated by commas. You can type all if you want to include all units:').split(',')
-      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made:').split(',')
+      time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance  report up to now you must enter the first and the last date that a transaction has been made:').split(',')
     
     # changing the class of selected units from str to int
       for i in range(len(selected_units)):
@@ -376,23 +386,26 @@ Finally, the *default function* is used to calculate the building charge, which 
           
       if selected_units == 'all':
         
-          final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1])].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+         final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1])].groupby('unit').aggregate({'cost for each unit':  'sum'}).reset_index()
           return final_balance
    
       else:
         
-          final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1]) &   (user_input_df['unit'].isin(selected_units))][['unit', 'cost for each unit']].groupby('unit').aggregate({'cost for each unit':  'sum'}).reset_index()
+          final_balance = user_input_df[(user_input_df['date'] >= time_period[0]) & (user_input_df['date'] <= time_period[1]) & (user_input_df['unit'].isin(selected_units))] [['unit', 'cost for each unit']].groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
           return final_balance
  
  ### *transaction histoy*
  
-    def transaction_histoy():
+    def transaction_histoy(root_in: str, root_out: str):
     
-      """ This function returns transactions within a specific time period in the form of csv. """
+      """ This function returns transactions within a specific time period in the
+          form of csv. The root_in variable is the path and the name of the excel
+          file containing transactions. The root_out variable is the path and the
+          name of the csv file that you want the reports to be saved. """
     
       import pandas as pd
     
-      transactions = pd.read_excel('data3.xlsx')
+      transactions = pd.read_excel(root_in)
     
     # the user enters a time period
       time_period = input('please enter your selected time period as the form yyyy-mm-dd separated by commas with the earlier date typed first. If you want to receive a balance report up to now you must enter the first and the last date that a transaction has been made:').split(',')
@@ -400,86 +413,119 @@ Finally, the *default function* is used to calculate the building charge, which 
     # filtering based on time period
       final_df = transactions[(transactions['date'] >= time_period[0]) & (transactions['date'] <= time_period[1])]
     
-      final_df.to_csv(r'C:\Users\ASUS\Desktop\مبانی برنامه سازی\پروژه\balance.csv', mode= 'w')
+      final_df.to_csv(root_out, mode= 'w')
     
       return 'A csv file with the name of balance has been created. Please check it.'
- 
+
  ### *portion by category*
  
-    def portion_by_category():
+    def portion_by_category(root_in: str):
     
-      """ This function reports the amount portion that each category has from the total expenses. """
+      """ This function reports the amount share that each category has from the
+          total expenses. The root_in variable is the path and the name of the excel
+          file containing transactions.  """
     
       import pandas as pd
       import matplotlib.pyplot as plt
 
-      user_input_df = pd.read_excel('data2.xlsx') 
+      user_input_df = pd.read_excel(root_in) 
     
-      portion = user_input_df.groupby('category').aggregate({'amount': 'sum'}).reset_index()
+      shares = user_input_df.groupby('category').aggregate({'amount': 'sum'}).reset_index()
     
-    # the % portion column demonstrates that what fraction of total expenses belongs to each category
-      portion['% portion'] = (portion['amount'] / portion['amount'].sum()) * 100
+    # the % share column demonstrates that what fraction of total expenses belongs to each category
+    shares['% share'] = (shares['amount'] / shares['amount'].sum()) * 100
     
     # plotting for better understanding
-      plt.pie(portion['amount'], labels = portion['category'], shadow = False, autopct ='%1.f%%')
-      plt.title('portion by subcategory')
+      plt.pie(shares['amount'], labels = shares['category'], shadow = False, autopct ='%1.f%%')
+      plt.title('shares by subcategory')
       plt.show()
 
-      return portion,'A plot has been drawn in the plots pane.Please check it'
+      return shares,'A plot has been drawn in the plots pane.Please check it'
+ 
  
  ### *portion by subcategory*
  
-    def portion_by_subcategory():
+    def portion_by_subcategory(root_in: str):
     
-      """ This function reports the amount portion that each subcategory has from the total expenses costed by bills. """
+      """ This function reports the amount share that each subcategory has from
+          the total expenses costed by bills. The root_in variable is the path 
+          and the name of the excel file containing transactions. """
     
       import pandas as pd
       import matplotlib.pyplot as plt
 
-      user_input_df = pd.read_excel('data2.xlsx')
+      user_input_df = pd.read_excel(root_in)
     
       user_input_df = user_input_df[user_input_df['category'] == 'bill']
-      portion = user_input_df.groupby('subcategory').aggregate({'amount': 'sum'}).reset_index()
-      portion['% portion'] = (portion['amount'] / portion['amount'].sum()) * 100
+      shares = user_input_df.groupby('subcategory').aggregate({'amount': 'sum'}).reset_index()
+      shares['% share'] = (shares['amount'] / shares['amount'].sum()) * 100
 
     # plotting for better understanding
-      plt.pie(portion['amount'], labels = portion['subcategory'], shadow = True, autopct = '%1.f%%')
-      plt.title('portion by subcategory')
+      plt.pie(shares['amount'], labels = shares['subcategory'], shadow = True, autopct = '%1.f%%')
+      plt.title('shares by subcategory')
       plt.show()
-    
-      return portion,'A plot has been drawn in the plots pane.Please check it'
+      
+      return shares,'A plot has been drawn in the plots pane.Please check it'
  
  ### *portion by unit*
  
-    def portion_by_unit():
+    def portion_by_unit(root_in: str):
     
-      """ This function reports the amount portion that each unit has from the total expenses. """
+      """ This function reports the amount share that each unit has from 
+          total expenses. The root_in variable is the path and the name of the excel
+          file containing transactions. """
     
       import pandas as pd
       import matplotlib.pyplot as plt
     
-      transactions = pd.read_excel('data3.xlsx')
+      transactions = pd.read_excel(root_in)
     
-      portion = transactions.groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
-      portion['% portion'] = (portion['cost for each unit'] / portion['cost for each unit'].sum())
+      shares = transactions.groupby('unit').aggregate({'cost for each unit': 'sum'}).reset_index()
+      shares['% share'] = (shares['cost for each unit'] / shares['cost for each unit'].sum()) * 100
     
     # plotting for better understanding
-      plt.pie(portion['cost for each unit'], labels = portion['unit'], shadow = True, autopct = '%1.f%%')
-      plt.title('portion by unit')
+      plt.pie(shares['cost for each unit'], labels = shares['unit'], shadow = True, autopct = '%1.f%%')
+      plt.title('shares by unit')
       plt.show()
     
-      return portion,'A plot has been drawn in the plots pane. Please chack it.'
+      return shares,'A plot has been drawn in the plots pane. Please chack it.'
+ 
+ ### *negative balance error*
+ 
+    def negative_balance_error(root_in: str):  
+    
+      """ This function returns a warning if the buildings total balance is negative.
+          The root_in variable is the path and the name of the excel file
+          containing transactions. """
+
+      import pandas as pd
+    
+      transactions = pd.read_excel(root_in)
+
+      income = transactions[transactions['category'] == 'charge']['cost for each unit'].sum()
+      expenses = transactions[transactions['category'] != 'charge']['cost for each unit'].sum()
+      total_balance = income - expenses
+    
+      if total_balance >= 0:
+        
+          return ('Your total balance is' + str(total_balance)+ ', All expenses have been paid.')
+    
+      else:
+        
+          return ('Warning! You have negative total balance. You need at least' + str(abs(total_balance)))
  
  ### *cumulative sum for units*
  
-    def cumulative_sum_for_units():
+    def cumulative_sum_for_units(root_in: str):
     
-      """ This function returns a cumulative sum for the expenses of each unit based on specified units within a specific time period. """
+      """ This function returns a cumulative sum for the expenses of each unit
+          based on specified units within a specific time period. The root_in
+          variable is the path and the name of the excel file containing transactions. """
     
       import pandas as pd
       import matplotlib.pyplot as plt
     
-      transactions = pd.read_excel('data3.xlsx')
+      transactions = pd.read_excel(root_in)
     
     # the user enters the specified units and subcategories and time period
       selected_subcategories = input('Please enter your specified subcategories separated by commas. You can type all if you want to include all subcategories: ')
@@ -576,16 +622,21 @@ Finally, the *default function* is used to calculate the building charge, which 
           plt.show()
         
           return 'A plot has been drawn in the plots pane. Please check it.'
+          
+**[⬆ back to top](#table-of-contents)** 
  
  ### *cumulative sum for subcategory*
-    def cumulative_sum_for_subcategories():
+ 
+    def cumulative_sum_for_subcategories(root_in: str):
     
-      """ This function returns a cumulative sum for the expenses of each subcategory within a specific time period."""
+      """ This function returns a cumulative sum for the expenses of each
+          subcategory within a specific time period. The root_in variable is the
+          path and the name of the excel file containing transactions."""
     
       import pandas as pd
       import matplotlib.pyplot as plt
 
-      transactions = pd.read_excel('data3.xlsx')
+      transactions = pd.read_excel(root_in)
     
     # if specific subcategories are included then the category column must be a bill
       transactions = transactions[transactions['category'] == 'bill']
@@ -633,6 +684,29 @@ Finally, the *default function* is used to calculate the building charge, which 
           plt.show()
         
           return 'A plot has been drawn in the plots pane. Please check it.'
+          
+ **[⬆ back to top](#table-of-contents)**         
+
+### *next year expenditure estimation*
+
+    def next_year_expenditure_estimation(root_in: str, root_info: str):
+    
+      """ This function estimates the amount of expenses that each unit should pay
+          in the next year. The root_in variable is the path and the name of the
+          excel file containing transactions. """
+    
+      import pandas as pd
+    
+      user_input_df = pd.read_excel(root_in)
+      resident_info = pd.read_excel(root_info)
+      inflation_rate = 1.1
+    
+      user_input_df = user_input_df[user_input_df['category'] != 'charge']
+      last_year_total_costs = user_input_df[(user_input_df['time'] >= (user_input_df['time'].iloc[-1][0:5] + '01-01')) & (user_input_df['time'] <= user_input_df['time'].iloc[-1])]['amount'].sum()
+      next_year_expenditure_projection = last_year_total_costs * inflation_rate
+      unit_next_year_monthly_payment = next_year_expenditure_projection // (12 * len(resident_info['number']))
+    
+      return unit_next_year_monthly_payment
  
  **[⬆ back to top](#table-of-contents)**
 
