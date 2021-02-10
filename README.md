@@ -516,6 +516,8 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
  
  ### *cumulative sum for units*
  
+ [*Observation sample-cumsum graph*](https://github.com/FAHM7380/group6-Falahati/blob/main/Final%20Project/Observation%20sample-cumsum%20graph.png?raw=true)
+ 
     def cumulative_sum_for_units(root_in: str):
     
       """ This function returns a cumulative sum for the expenses of each unit
