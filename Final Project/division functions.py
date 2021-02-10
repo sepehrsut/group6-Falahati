@@ -1,4 +1,4 @@
-# for dividing expenses please run each division function(equal,number,area,parking,default) in the python console.
+# for dividing expenses please type execute_all_division_funcs(root_in, root_out, root_info) in python console
 
 def equal(root_in: str, root_out: str):
    
@@ -206,4 +206,13 @@ def default(root_in: str, root_out: str, root_info: str):
     
     user_input_df.to_csv(root_out, mode = 'a', header = False, index = False)   
     
-    return  
+    return
+
+def execute_all_division_funcs(root_in: str, root_out: str, root_info: str):
+    
+    equal(root_in, root_out)
+    number(root_in, root_out, root_info)
+    area(root_in, root_out, root_info)
+    parking(root_in, root_out, root_info)
+    
+    return
