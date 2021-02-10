@@ -129,9 +129,9 @@ At the end of the input, after receiving this information from the building mana
 
 ## **Division Function**
 
-Division functions are a group of functions that divide the price between units based on the inputs of the building manager in the previous section, as stated in the functions. This group of functions includes 5 *equal, number, area, parking and default functions*, of which the 3 functions *number, area, parking* have almost the same algorithm, except that they are calculated based on the area of the units or the number of parking spaces or the number of people.
-The *equal function* also divides a cost equally between units, which is the most common method of calculation in buildings.
-Finally, the *default function* is used to calculate the building charge, which is always a constant value and is evenly divided between the units.
+Division functions are a group of functions that divide the price between units based on the inputs of the building manager in the previous section, as stated in the functions. This group of functions includes 5 ***equal, number, area, parking and default functions***, of which the 3 functions ***number***, ***area***, ***parking*** have almost the same algorithm, except that they are calculated based on the area of the units or the number of parking spaces or the number of people.
+The ***equal function*** also divides a cost equally between units, which is the most common method of calculation in buildings.
+Finally, the ***default function*** is used to calculate the building charge, which is always a constant value and is evenly divided between the units.
 
 ### *equal*
 
@@ -354,7 +354,7 @@ Report functions return a wide range of building’s financial reports such as c
 
 The ***balance function*** provides each unit’s total payments in a desired time period.
 
-A history of transactions in a specified time is also delivered as a csv file to the user by the ***transaction_history_function***. 
+A history of transactions in a specified time is also delivered as a csv file to the user by the ***transaction_history function***. 
 
 Functions starting with the word ***portion_by*** illustrate each unit, category or subcategory’s fraction of the total expenses.
 
