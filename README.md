@@ -623,6 +623,8 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
         
           return 'A plot has been drawn in the plots pane. Please check it.'
           
+**Observation sample-cumsum graph:**
+
 ![alt text](https://github.com/FAHM7380/group6-Falahati/blob/main/Final%20Project/Observation%20sample-cumsum%20graph.png?raw=true)
     
           
@@ -710,7 +712,8 @@ The last but not least is the ***next_year_expenditure_estimation function*** wh
       unit_next_year_monthly_payment = next_year_expenditure_projection // (12 * len(resident_info['number']))
     
       return unit_next_year_monthly_payment
- 
+**Observation sample-next year expenditure estimation:**
+
 ![alt text](https://github.com/FAHM7380/group6-Falahati/blob/main/Final%20Project/photo_2021-02-10_09-14-13.jpg?raw=true)
 
 Using data3 and data1 that put in Data exc, the estimated monthly payment next year for each unit is about 401 thousand tomans.
